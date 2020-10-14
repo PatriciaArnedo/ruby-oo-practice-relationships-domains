@@ -14,8 +14,8 @@ class Show
         @@all
     end
 
-    def new_role(role, character, actor, show=nil)
-        Role.new(role, character, self, show)
+    def new_role(role, character, actor, movie=nil)
+        Role.new(role, character, actor, movie, self)
     end
 
     def roles
@@ -23,14 +23,14 @@ class Show
     end
 
     def characters
-        self.roles.map{|role| role.character}
+        self.roles.map{ |role| role.character}
     end
 
 
     def on_the_big_screen
-        movies = Role.all.select{|role| role.movie != nil}
-        movie_titles = movies.map{|movie| movie.title}
-        movie_titles.select{|title| title == self.title}
+        roles_array = Role.all.select{|role| role.movie != nil}
+        movies = roles_array.map{|role| role.movie}
+        movies.select{|movie| movie.title == self.title}
     end
 
 end

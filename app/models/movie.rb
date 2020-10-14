@@ -14,7 +14,7 @@ class Movie
         @@all
     end
 
-    def new_role(role, character, actor, movie=nil, show=nil)
+    def new_role(role, character, actor, show=nil)
         Role.new(role, character, actor, self, show)
     end
 
@@ -35,8 +35,7 @@ class Movie
     end
 
     def self.most_actors
-        actor_counts = self.all.map{|movie| movie.actor_count}
-        actor_count.max{|a,b| a <=> b}
+        self.all.max_by{|movie| movie.actor_count}
     end
 
 end

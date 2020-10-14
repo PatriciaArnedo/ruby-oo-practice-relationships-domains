@@ -26,7 +26,6 @@ class Actor
     end
 
     def self.most_characters
-        char_counts = self.all.map{|actor| actor.character_count}
-        char_counts.max{|a,b| a <=> b}
+        self.all.max_by{|actor| actor.character_count}
     end
 end

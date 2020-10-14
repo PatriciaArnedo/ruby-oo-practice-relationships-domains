@@ -32,8 +32,7 @@ class Character
     end
 
     def self.most_appearances
-        appearances = self.all.map{ |character| character.role_count}
-        appearances.max{|role_count_a,role_count_b| role_count_a <=> role_count_b}
+        self.all.max_by{ |character| character.role_count }
     end
 
 end
